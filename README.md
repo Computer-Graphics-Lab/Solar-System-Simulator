@@ -142,8 +142,6 @@ This project is being developed collaboratively by a team of three students as p
 | Nayem | Visual Enhancements and Realism |
 | Fahad | Interactive Features and Controls |
 
-*Contributions and responsibilities may evolve throughout the development process.*
-
 ## Contributing
 
 Contributions, suggestions, and improvements are welcome.
