@@ -10,7 +10,7 @@ A Computer Graphics Lab project that simulates the Solar System using Python's T
 
 The **Solar System Simulator** is a Python-based graphical application designed to represent the Solar System in an animated 2D environment.
 
-Using Python's built-in Turtle Graphics library, the simulator creates a visual representation of the Sun and planets, demonstrating their orbital movements around the Sun.
+Using Python's built-in Turtle Graphics library, the simulator creates a visual representation of the Sun and planets, demonstrating their orbital movements around he Sun.
 
 This project was developed as part of our Computer Graphics Lab to explore graphical programming, animation techniques, and object movement using Python.
 
@@ -156,12 +156,6 @@ If you are a member of the development team:
 6. Open a Pull Request for review.
 
 Please avoid pushing unfinished changes directly to the `main` branch.
-
-## License
-
-This project is currently developed for educational purposes as part of a Computer Graphics Lab course.
-
-A formal open-source license may be added in the future.
 
 ---
 
