@@ -19,10 +19,7 @@ from orbits import (
 from controls import setup_controls
 
 
-# ==============================
 # 1. CREATE GRAPHICS WINDOW
-# ==============================
-
 screen = turtle.Screen()
 screen.title("Solar System Simulator")
 screen.bgcolor(SCREEN_BACKGROUND)
@@ -30,38 +27,23 @@ screen.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 screen.tracer(0)
 
 
-# ==============================
 # 2. CREATE BACKGROUND
-# ==============================
-
 stars = create_background()
 
 
-# ==============================
 # 3. CREATE SUN
-# ==============================
-
 sun = create_sun()
 
 
-# ==============================
 # 4. CREATE PLANETS
-# ==============================
-
 planets = create_planets()
 
 
-# ==============================
 # 5. DRAW ORBITAL PATHS
-# ==============================
-
 orbits = create_orbits()
 
 
-# ==============================
 # 6. SIMULATION CONTROL
-# ==============================
-
 state = {
     "running": True,
     "timer_id": None
@@ -89,10 +71,7 @@ def cancel_animation():
 setup_controls(screen, set_running, cancel_animation)
 
 
-# ==============================
 # 7. PLANETARY ANIMATION
-# ==============================
-
 def animate():
 
     if not state["running"]:
@@ -100,10 +79,8 @@ def animate():
 
     saturn = None
 
-    # --------------------------------
-    # FIRST: Calculate planet positions
-    # --------------------------------
 
+    # FIRST: Calculate planet positions
     for planet in planets:
 
         planet["angle"] += planet["speed"]
@@ -118,10 +95,8 @@ def animate():
         if planet["name"] == "Saturn":
             saturn = planet
 
-    # --------------------------------
-    # SECOND: Move planets and labels
-    # --------------------------------
 
+    # SECOND: Move planets and labels
     for planet in planets:
 
         x, y = planet["position"]
@@ -137,30 +112,22 @@ def animate():
             font=("Arial", 8, "normal")
         )
 
-    # --------------------------------
-    # THIRD: Draw Saturn's ring arcs
-    # --------------------------------
 
+    # THIRD: Draw Saturn's ring arcs
     if saturn is not None:
         draw_saturn_rings(saturn)
 
-    # --------------------------------
-    # FOURTH: Update screen
-    # --------------------------------
 
+    # FOURTH: Update screen
     screen.update()
 
-    # --------------------------------
-    # FIFTH: Maintain Saturn's ring layers
-    # --------------------------------
 
+    # FIFTH: Maintain Saturn's ring layers
     if saturn is not None:
         update_ring_layers(screen, saturn)
 
-    # --------------------------------
-    # SIXTH: Schedule next animation
-    # --------------------------------
 
+    # SIXTH: Schedule next animation
     if state["running"]:
         state["timer_id"] = screen.ontimer(
             animate,
@@ -168,10 +135,7 @@ def animate():
         )
 
 
-# ==============================
 # 8. START SIMULATION
-# ==============================
-
 animate()
 
 screen.mainloop()
