@@ -57,14 +57,14 @@ def draw_saturn_rings(saturn):
 
     x, y = saturn["position"]
 
-    # Upper half: behind Saturn
+    # Upper Half: Behind Saturn
     draw_ring(
         saturn["back_ring"],
         x, y,
         0, 180
     )
 
-    # Lower half: in front of Saturn
+    # Lower Half: In front of Saturn
     draw_ring(
         saturn["front_ring"],
         x, y,

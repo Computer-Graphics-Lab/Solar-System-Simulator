@@ -43,7 +43,7 @@ def create_planets():
             front_ring.pensize(2)
             front_ring.penup()
 
-        # Create planet
+        # Create Planet
         planet = turtle.Turtle()
         planet.shape("circle")
         planet.color(color)
@@ -51,7 +51,7 @@ def create_planets():
         planet.penup()
         planet.goto(distance, 0)
 
-        # Create planet label
+        # Create Planet label
         label = turtle.Turtle()
         label.hideturtle()
         label.penup()
