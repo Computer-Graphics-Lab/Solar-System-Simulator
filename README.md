@@ -126,7 +126,7 @@ Potential improvements for future development include:
 
 - [ ] Add more realistic planetary proportions.
 - [ ] Implement adjustable orbital speeds.
-- [ ] Add interactive zoom and navigation controls.
+- [ ] Add interactive features with navigation controls.
 - [ ] Display planetary names and information.
 - [ ] Add pause and resume functionality.
 - [ ] Implement additional celestial objects.
