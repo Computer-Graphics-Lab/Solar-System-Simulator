@@ -1,7 +1,3 @@
-# ==============================
-# SOLAR SYSTEM CONFIGURATION
-# ==============================
-
 # Screen configuration
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 800
@@ -11,6 +7,9 @@ SCREEN_BACKGROUND = "black"
 STAR_COUNT = 150
 
 # Planet information
+# Format:
+# (Name, Color, Size, Distance, Speed)
+
 PLANETS_DATA = [
     ("Mercury", "gray", 0.5, 80, 4.7),
     ("Venus", "orange", 0.8, 120, 3.5),

@@ -18,7 +18,6 @@ from orbits import (
 )
 from controls import setup_controls
 
-
 # 1. CREATE GRAPHICS WINDOW
 screen = turtle.Screen()
 screen.title("Solar System Simulator")
@@ -26,59 +25,151 @@ screen.bgcolor(SCREEN_BACKGROUND)
 screen.setup(width=SCREEN_WIDTH, height=SCREEN_HEIGHT)
 screen.tracer(0)
 
-
 # 2. CREATE BACKGROUND
 stars = create_background()
-
 
 # 3. CREATE SUN
 sun = create_sun()
 
-
 # 4. CREATE PLANETS
 planets = create_planets()
 
+# Store original planetary angles
+for planet in planets:
+    planet["initial_angle"] = planet["angle"]
 
 # 5. DRAW ORBITAL PATHS
 orbits = create_orbits()
 
-
 # 6. SIMULATION CONTROL
 state = {
     "running": True,
-    "timer_id": None
+    "timer_id": None,
+    "delay": ANIMATION_DELAY,
+    "generation": 0,
+    "closed": False
 }
-
 
 def set_running(value):
     state["running"] = value
 
+    if not value:
+        state["closed"] = True
 
 def cancel_animation():
+    """Cancel the currently scheduled animation."""
+
+    state["generation"] += 1
+
     timer_id = state["timer_id"]
 
     if timer_id is not None:
         try:
             screen.getcanvas().after_cancel(timer_id)
-        except turtle.TurtleGraphicsError:
-            pass
         except Exception:
             pass
 
-        state["timer_id"] = None
+    state["timer_id"] = None
 
+def change_speed(action):
+    """Control simulation speed, pause, resume and reset."""
 
-setup_controls(screen, set_running, cancel_animation)
+    if state["closed"]:
+        return
 
+    if action == "toggle":
 
-# 7. PLANETARY ANIMATION
-def animate():
+        if state["running"]:
+            state["running"] = False
+            cancel_animation()
+            print("Simulation Paused")
+
+        else:
+            state["running"] = True
+            print("Simulation Resumed")
+            animate()
+
+    elif action == "faster":
+
+        state["delay"] = max(
+            5,
+            state["delay"] - 5
+        )
+
+        print("Simulation Speed Increased")
+
+    elif action == "slower":
+
+        state["delay"] = min(
+            100,
+            state["delay"] + 5
+        )
+
+        print("Simulation Speed Decreased")
+
+    elif action == "reset":
+
+        # Cancel previous animation
+        cancel_animation()
+
+        # Restore original planetary angles.
+        # Subtract speed because animate() adds it
+        # before calculating the next position.
+        for planet in planets:
+            planet["angle"] = (
+                planet["initial_angle"] - planet["speed"]
+            )
+
+        # Restore original animation speed
+        state["delay"] = ANIMATION_DELAY
+
+        # Resume simulation
+        state["running"] = True
+
+        print("Simulation Reset")
+        print(f"Animation delay: {state['delay']} ms")
+
+        animate()
+        return
+
+    print(f"Animation delay: {state['delay']} ms")
+
+# 7. SET UP KEYBOARD CONTROLS
+setup_controls(
+    screen,
+    set_running,
+    cancel_animation,
+    change_speed
+)
+
+# 8. PLANETARY ANIMATION
+def animate(generation=None):
+    if not state["running"]:
+        return
+
+    try:
+        if not screen.getcanvas().winfo_exists():
+            return
+    except Exception:
+        return
+
+    if generation is None:
+        generation = state["generation"]
+
+    # Prevent outdated callbacks
+    if state["closed"]:
+        return
 
     if not state["running"]:
         return
 
-    saturn = None
+    if generation != state["generation"]:
+        return
 
+    # Current timer has executed
+    state["timer_id"] = None
+
+    saturn = None
 
     # FIRST: Calculate planet positions
     for planet in planets:
@@ -94,7 +185,6 @@ def animate():
 
         if planet["name"] == "Saturn":
             saturn = planet
-
 
     # SECOND: Move planets and labels
     for planet in planets:
@@ -112,30 +202,37 @@ def animate():
             font=("Arial", 8, "normal")
         )
 
-
     # THIRD: Draw Saturn's ring arcs
     if saturn is not None:
         draw_saturn_rings(saturn)
 
-
     # FOURTH: Update screen
     screen.update()
 
-
     # FIFTH: Maintain Saturn's ring layers
     if saturn is not None:
+        try:
+            if screen.getcanvas().winfo_exists():
+                update_ring_layers(screen, saturn)
+        except turtle.Terminator:
+            return
+        except Exception:
+            return
         update_ring_layers(screen, saturn)
 
-
     # SIXTH: Schedule next animation
-    if state["running"]:
+    if (
+        state["running"]
+        and not state["closed"]
+        and generation == state["generation"]
+    ):
+
         state["timer_id"] = screen.ontimer(
-            animate,
-            ANIMATION_DELAY
+            lambda g=generation: animate(g),
+            state["delay"]
         )
 
-
-# 8. START SIMULATION
+# 9. START SIMULATION
 animate()
 
 screen.mainloop()
