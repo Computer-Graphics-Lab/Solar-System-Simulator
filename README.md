@@ -10,20 +10,21 @@ A Computer Graphics Lab project that simulates the Solar System using Python's T
 
 The **Solar System Simulator** is a Python-based graphical application designed to represent the Solar System in an animated 2D environment.
 
-Using Python's built-in Turtle Graphics library, the simulator creates a visual representation of the Sun and planets, demonstrating their orbital movements around he Sun.
+Using Python's built-in Turtle Graphics library, the simulator creates a visual representation of the Sun and eight planets, demonstrating their orbital movements around the Sun.
 
-This project was developed as part of our Computer Graphics Lab to explore graphical programming, animation techniques, and object movement using Python.
+This project was developed collaboratively by three students as part of our Computer Graphics Lab to explore graphical programming, animation techniques, object movement, and collaborative software development using Git and GitHub.
 
 ## Features
 
 - **Sun Representation:** A central representation of the Sun.
-- **Planetary Visualization:** Graphical representations of planets.
+- **Planetary Visualization:** Graphical representations of the eight planets.
 - **Orbital Animation:** Animated planetary movement around the Sun.
-- **Space Background:** A visual environment representing outer space.
+- **Orbital Paths:** Visual representations of planetary orbits.
+- **Space Background:** A graphical environment representing outer space.
+- **Animation Controls:** Pause, resume, and reset the simulation.
+- **Speed Adjustment:** Increase or decrease the animation speed.
 - **Turtle Graphics:** Built using Python's Turtle Graphics library.
 - **Real-Time Animation:** Continuous animation of the simulated planetary system.
-
-*Note: Features may evolve as the project progresses.*
 
 ## Technologies Used
 
@@ -95,52 +96,83 @@ The Solar System Simulator window should now open.
 
 ## Project Structure
 
-The current project structure:
+The project is organized into separate Python modules to improve code readability, maintainability, and collaboration.
 
 ```text
 Solar-System-Simulator/
 │
 ├── main.py
-├── requirements.txt
+├── config.py
+├── background.py
+├── planets.py
+├── orbits.py
+├── controls.py
+│
 ├── .gitignore
 └── README.md
 ```
 
-As development progresses, the project may be organized into additional modules for better code management and collaboration.
+### Module Description
+
+| File | Description |
+|---|---|
+| `main.py` | Main application entry point and simulation coordination |
+| `config.py` | Configuration settings for the simulation |
+| `background.py` | Background rendering and visual environment |
+| `planets.py` | Planet creation and visualization |
+| `orbits.py` | Orbital paths and related functionality |
+| `controls.py` | Simulation controls and user interactions |
+| `.gitignore` | Files and directories excluded from Git |
 
 ## Learning Objectives
 
-This project aims to demonstrate practical applications of fundamental computer graphics concepts, including:
+This project demonstrates practical applications of fundamental computer graphics concepts, including:
 
 - 2D graphical object creation.
 - Coordinate systems and positioning.
 - Circular motion and orbital paths.
 - Animation and object movement.
 - Graphical rendering using Python Turtle.
-- Modular programming and collaborative software development.
+- Modular programming and code organization.
+- Collaborative software development.
 - Version control using Git and GitHub.
 
 ## Future Improvements
 
-Potential improvements for future development include:
+Potential enhancements for future versions include:
 
-- [ ] Add more realistic planetary proportions.
-- [ ] Implement adjustable orbital speeds.
-- [ ] Add interactive features with navigation controls.
-- [ ] Display planetary names and information.
-- [ ] Add pause and resume functionality.
-- [ ] Implement additional celestial objects.
-- [ ] Improve visual effects and graphical presentation.
+- [ ] Display planetary names and additional information.
+- [ ] Add planetary information panels.
+- [ ] Improve the realism of planetary proportions and orbital distances.
+- [ ] Include additional celestial objects, such as moons and asteroids.
+- [ ] Introduce more advanced visual effects and graphical enhancements.
 
 ## Contributors
 
-This project is being developed collaboratively by a team of three students as part of our Computer Graphics Lab.
+This project was developed collaboratively by a team of three students as part of our Computer Graphics Lab.
 
 | Contributor | Role |
 |---|---|
-| Mohib | Development and Integration |
-| Nayem | Visual Enhancements and Realism |
-| Fahad | Interactive Features and Controls |
+| Mohib | Project Leadership, Core Development and Integration |
+| Nayem | Planet and Orbit Development |
+| Fahad | Background Development and Interactive Controls |
+
+## Collaborative Development
+
+The project was developed using Git and GitHub to facilitate teamwork and version control.
+
+Each team member worked on assigned components using separate feature branches.
+
+The collaboration workflow included:
+
+1. Cloning the shared repository.
+2. Creating individual feature branches.
+3. Developing assigned features independently.
+4. Committing and pushing changes.
+5. Creating Pull Requests.
+6. Reviewing and merging contributions into the main branch.
+
+This workflow helped the team practice collaborative software development and GitHub-based project management.
 
 ## Contributing
 
@@ -148,7 +180,7 @@ Contributions, suggestions, and improvements are welcome.
 
 If you are a member of the development team:
 
-1. Fork or clone the repository.
+1. Clone the repository.
 2. Create a separate branch for your work.
 3. Make your changes.
 4. Commit your changes with meaningful commit messages.
@@ -166,5 +198,7 @@ Please avoid pushing unfinished changes directly to the `main` branch.
 **Solar System Simulator**
 
 Built with Python and Turtle Graphics.
+
+Developed as part of the Computer Graphics Lab.
 
 </div>
